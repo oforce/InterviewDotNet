@@ -13,7 +13,7 @@ using System.Net.Http.Headers;
 //Guid - Id
 //decimal - Commission
 //decimal - Deduction
-var dataList = CsvFileReader.Read();
+TestQuestions.dataList = CsvFileReader.Read();
 
 Console.WriteLine("******************************************************************************************");
 
