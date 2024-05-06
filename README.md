@@ -25,6 +25,4 @@ VS Code is also Ok
 * The questions range from easy to hard in difficulty.
 
 ## Expected Output
-* All output will be displayed in the console application.
-* Please use `Console.WriteLine` to output your answers
-* An example would be like this: `Console.WriteLine($"Question 1 Answer: {Your Answer Goes Here}");`
+* You will use the OforceInterviewTest.Test to demonstate if implemented methods are correct.
