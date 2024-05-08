@@ -8,7 +8,7 @@ public class SettlementsTest(SettlementsTest.Context context)
     public void can_read_from_csv_file()
     {
         // Act
-        var data = context.SettlementCsvData();
+        var data = context.CsvData;
 
         // Assert
         data.ShouldNotBeNull();
@@ -19,11 +19,11 @@ public class SettlementsTest(SettlementsTest.Context context)
     public void count_is_correct()
     {
         // Arrange
-        var data = context.SettlementCsvData();
+        var data = Settlements.ParseCsvData(context.CsvData);
         var summaries = Settlements.ReadSettlementSummaries(data);
 
         // Act
-        var count = Settlements.Count(summaries);
+        var count = summaries.CountSettlements();
 
         // Assert
         count.ShouldBe(8);
@@ -41,7 +41,7 @@ public class SettlementsTest(SettlementsTest.Context context)
     public void amounts_for_settlement_id(string settlementId, int expectedCount)
     {
         // Arrange
-        var data = context.SettlementCsvData();
+        var data = Settlements.ParseCsvData(context.CsvData);
         var summaries = Settlements.ReadSettlementSummaries(data);
 
         // Act
@@ -59,7 +59,7 @@ public class SettlementsTest(SettlementsTest.Context context)
     public void count_where_amounts_are_greater_than(int greaterThan, int expectedCount)
     {
         // Arrange
-        var data = context.SettlementCsvData();
+        var data = Settlements.ParseCsvData(context.CsvData);
         var summaries = Settlements.ReadSettlementSummaries(data);
 
         // Act
@@ -68,7 +68,7 @@ public class SettlementsTest(SettlementsTest.Context context)
         // Assert
         count.ShouldBe(expectedCount);
     }
-    
+
     [Theory]
     [InlineData("0702b621-e076-4d96-a219-3a7e4208c4f7", 0, 158.504664183717500, -158.504664183717500)]
     [InlineData("3228fe14-dc3d-4fe5-83d7-f66e35919329", 3953.6517141460919000, 330.490489606843700, 3623.1612245392482000)]
@@ -78,10 +78,11 @@ public class SettlementsTest(SettlementsTest.Context context)
     [InlineData("96a4e4a2-2ae4-4711-9534-8d6d8330f6f6", 3158.296850655789000, 197.6893700144328200, 2960.6074806413561800)]
     [InlineData("e2d11981-e85b-4fd2-b810-44a41945107a", 1704.991474757491000, 149.142690511674400, 1555.848784245816600)]
     [InlineData("f2ce7dac-176e-4359-9b41-e2d2c602a48f", 0, 129.230945230829900, -129.230945230829900)]
-    public void calculate_totals(string settlementId, decimal expectedGrossCommissions, decimal expectedGrossDeductions, decimal expectedNetTotal)
+    public void calculate_totals(string settlementId, decimal expectedGrossCommissions, decimal expectedGrossDeductions,
+        decimal expectedNetTotal)
     {
         // Arrange
-        var data = context.SettlementCsvData();
+        var data = Settlements.ParseCsvData(context.CsvData);
         var summaries = Settlements.ReadSettlementSummaries(data);
 
         // Act
@@ -97,19 +98,13 @@ public class SettlementsTest(SettlementsTest.Context context)
 
     public class Context : UnitTestContext
     {
-        private const string CsvFilePath = "Data/Settlements.csv";
+        private readonly Lazy<IReadOnlyList<string[]>> _csvDataProducer = new(() => [..StreamCsvFile()]);
+        
+        public IReadOnlyList<string[]> CsvData => _csvDataProducer.Value;
 
-        public IReadOnlyList<SettlementCsvData> SettlementCsvData() =>
-            StreamCsvFile(CsvFilePath)
-                .Select(values => new SettlementCsvData(
-                    Guid.Parse(values[0]),
-                    decimal.Parse(values[1]),
-                    decimal.Parse(values[2]))
-                ).ToList();
-
-        private static IEnumerable<string[]> StreamCsvFile(string path)
+        static IEnumerable<string[]> StreamCsvFile()
         {
-            using var reader = new StreamReader(path);
+            using var reader = new StreamReader("Data/Settlements.csv");
             var _ = reader.ReadLine();
 
             // Read each data row

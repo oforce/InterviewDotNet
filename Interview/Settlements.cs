@@ -8,12 +8,17 @@ using SummaryList = IReadOnlyList<DataModels.SettlementSummary>;
 [SuppressMessage("ReSharper", "UnusedParameter.Global")]
 public static class Settlements
 {
+    public static IEnumerable<CsvData> ParseCsvData(IEnumerable<string[]> rows)
+    {
+        throw new NotImplementedException();
+    }
+
     public static SummaryList ReadSettlementSummaries(IEnumerable<CsvData> data)
     {
         throw new NotImplementedException();
     }
 
-    public static int Count<T>(IEnumerable<T> items)
+    public static int CountSettlements(this SummaryList items)
     {
         throw new NotImplementedException();
     }
