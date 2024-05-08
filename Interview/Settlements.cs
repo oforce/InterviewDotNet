@@ -3,11 +3,12 @@
 namespace Interview;
 
 using CsvData = (Guid Id, decimal Commission, decimal Deduction);
+using SummaryList = IReadOnlyList<DataModels.SettlementSummary>;
 
 [SuppressMessage("ReSharper", "UnusedParameter.Global")]
 public static class Settlements
 {
-    public static IReadOnlyList<DataModels.SettlementSummary> ReadSettlementSummaries(IEnumerable<CsvData> data)
+    public static SummaryList ReadSettlementSummaries(IEnumerable<CsvData> data)
     {
         throw new NotImplementedException();
     }
@@ -17,17 +18,17 @@ public static class Settlements
         throw new NotImplementedException();
     }
 
-    public static IReadOnlyList<DataModels.SettlementAmounts> AmountsForSettlementId(this IReadOnlyList<DataModels.SettlementSummary> summaries, Guid settlementId)
+    public static IReadOnlyList<DataModels.SettlementAmounts> AmountsForSettlementId(this SummaryList summaries, Guid id)
     {
         throw new NotImplementedException();
     }
-    
-    public static int CountWhereAmountsAreGreaterThan(this IReadOnlyList<DataModels.SettlementSummary> summaries, decimal amount)
+
+    public static int CountWhereAmountsAreGreaterThan(this SummaryList summaries, decimal amount)
     {
         throw new NotImplementedException();
     }
-    
-    public static IReadOnlyList<DataModels.SettlementTotals> CalculateTotals(this IReadOnlyList<DataModels.SettlementSummary> summaries)
+
+    public static IReadOnlyList<DataModels.SettlementTotals> CalculateTotals(this SummaryList summaries)
     {
         throw new NotImplementedException();
     }
