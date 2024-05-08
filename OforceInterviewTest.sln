@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OforceInterviewTest", "OforceInterviewTest\OforceInterviewTest.csproj", "{A52002C7-70CA-4D75-989E-0AADEDC30E1B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OforceInterviewTest.Test", "OforceInterviewTest.Test\OforceInterviewTest.Test.csproj", "{AB38ADBA-9494-4FE9-8076-A875C2E916D1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interview", "Interview\Interview.csproj", "{76DF56A6-31C0-44F5-98BB-2D8AD6E5C6BD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interview.Test", "Interview.Test\Interview.Test.csproj", "{1B07E915-64DB-4E56-BD14-504746AA6E6B}"
@@ -22,14 +18,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A52002C7-70CA-4D75-989E-0AADEDC30E1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A52002C7-70CA-4D75-989E-0AADEDC30E1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A52002C7-70CA-4D75-989E-0AADEDC30E1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A52002C7-70CA-4D75-989E-0AADEDC30E1B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AB38ADBA-9494-4FE9-8076-A875C2E916D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AB38ADBA-9494-4FE9-8076-A875C2E916D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AB38ADBA-9494-4FE9-8076-A875C2E916D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AB38ADBA-9494-4FE9-8076-A875C2E916D1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{76DF56A6-31C0-44F5-98BB-2D8AD6E5C6BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{76DF56A6-31C0-44F5-98BB-2D8AD6E5C6BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76DF56A6-31C0-44F5-98BB-2D8AD6E5C6BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
